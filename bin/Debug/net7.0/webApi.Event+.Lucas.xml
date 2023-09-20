@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>webApi.Event+.Lucas</name>
+    </assembly>
+    <members>
+        <member name="T:webApi.Event_.Lucas.Migrations.Bd_V1">
+            <inheritdoc />
+        </member>
+        <member name="M:webApi.Event_.Lucas.Migrations.Bd_V1.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webApi.Event_.Lucas.Migrations.Bd_V1.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:webApi.Event_.Lucas.Migrations.Bd_V1.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>

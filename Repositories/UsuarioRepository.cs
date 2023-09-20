@@ -17,7 +17,19 @@ namespace webApi.Event_.Lucas.Repositories
         {
             try
             {
-                Usuario usuarioBuscado = _eventContext.Usuario.FirstOrDefault(u => u.Email == email)!;
+                Usuario usuarioBuscado = _eventContext.Usuario
+                     .Select(u => new Usuario
+                     {
+                         IdUsuario = u.IdUsuario,
+                         Nome = u.Nome,
+                         Email = u.Email,
+                         Senha = u.Senha,
+                         TiposUsuario = new TiposUsuario
+                         {
+                             IdTipoUsuario = u.IdTipoUsuario,
+                             Titulo = u.TiposUsuario!.Titulo
+                         }
+                     }).FirstOrDefault(usuario => usuario.Email == email)!;
 
                 if (usuarioBuscado != null)
                 {
@@ -46,7 +58,8 @@ namespace webApi.Event_.Lucas.Repositories
                     {
                         IdUsuario = u.IdUsuario,
                         Nome = u.Nome,
-
+                        Email= u.Email,
+                        Senha= u.Senha,
                         TiposUsuario = new TiposUsuario
                         {
                             IdTipoUsuario = u.IdTipoUsuario,
