@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using System.Data;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using webApi.Event_.Lucas.Domains;
@@ -23,6 +25,7 @@ namespace webApi.Event_.Lucas.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrador, Aluno")]
         public IActionResult Post(LoginViewModel usuario)
         {
             //LoginViewModel usuarioBuscado = usuario;

@@ -13,6 +13,18 @@ namespace webApi.Event_.Lucas.Repositories
         {
             _eventContext = new EventContext();
         }
+
+        public void Atualizar(Guid id, Usuario usuario)
+        {
+            Usuario usuarioAtualizado = _eventContext.Usuario.Find(id)!;
+            if (usuarioAtualizado != null)
+            {
+                usuarioAtualizado.Nome = usuario.Nome;
+            }
+            _eventContext.Usuario.Update(usuarioAtualizado!);
+            _eventContext.SaveChanges();
+        }
+
         public Usuario BuscarPorEmailESenha(string email, string senha)
         {
             try
@@ -95,6 +107,18 @@ namespace webApi.Event_.Lucas.Repositories
 
                 throw;
             }
+        }
+
+        public void Deletar(Guid id)
+        {
+            Usuario usuarioBuscado = _eventContext.Usuario.Find(id)!;
+            _eventContext.Usuario.Remove(usuarioBuscado);
+            _eventContext.SaveChanges();
+        }
+
+        public List<Usuario> Listar()
+        {
+            return _eventContext.Usuario.ToList();
         }
     }
 }

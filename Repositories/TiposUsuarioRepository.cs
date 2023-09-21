@@ -13,12 +13,13 @@ namespace webApi.Event_.Lucas.Repositories
         }
         public void Atualizar(Guid id, TiposUsuario tipoUsuario)
         {
-            throw new NotImplementedException();
-        }
-
-        public TiposUsuario BuscarPorId()
-        {
-            throw new NotImplementedException();
+            TiposUsuario usuarioAtualizado = _eventContext.TiposUsuario.Find(id)!;
+            if (usuarioAtualizado != null)
+            {
+                usuarioAtualizado.Titulo = tipoUsuario.Titulo;
+            }
+            _eventContext.TiposUsuario.Update(usuarioAtualizado!);
+            _eventContext.SaveChanges();
         }
 
         public void Cadastrar(TiposUsuario tipoUsuario)
@@ -30,12 +31,14 @@ namespace webApi.Event_.Lucas.Repositories
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            TiposUsuario usuarioBuscado = _eventContext.TiposUsuario.Find(id)!;
+            _eventContext.TiposUsuario.Remove(usuarioBuscado);
+            _eventContext.SaveChanges();
         }
 
         public List<TiposUsuario> Listar()
         {
-            throw new NotImplementedException();
+            return _eventContext.TiposUsuario.ToList();
         }
     }
 }

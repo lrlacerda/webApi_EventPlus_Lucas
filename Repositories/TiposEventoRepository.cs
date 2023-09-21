@@ -14,12 +14,18 @@ namespace webApi.Event_.Lucas.Repositories
         }
         public void Atualizar(Guid id, TiposEvento tipoEvento)
         {
-            throw new NotImplementedException();
+            TiposEvento eventoAtualizado = _eventContext.TiposEvento.Find(id)!;
+            if (eventoAtualizado != null)
+            {
+                eventoAtualizado.Titulo = tipoEvento.Titulo;
+            }
+            _eventContext.TiposEvento.Update(eventoAtualizado!);
+            _eventContext.SaveChanges();
         }
 
-        public TiposEvento BuscarPorId()
+        public TiposEvento BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            return _eventContext.TiposEvento.FirstOrDefault(e => e.IdTipoEvento == id)!;
         }
 
         public void Cadastrar(TiposEvento tipoEvento)
@@ -31,13 +37,14 @@ namespace webApi.Event_.Lucas.Repositories
 
         public void Deletar(Guid id)
         {
-            _eventContext.TiposEvento.Remove(BuscarPorId());
+            TiposEvento eventoBuscado = _eventContext.TiposEvento.Find(id)!;
+            _eventContext.TiposEvento.Remove(eventoBuscado);
             _eventContext.SaveChanges();
         }
 
         public List<TiposEvento> Listar()
         {
-            throw new NotImplementedException();
+            return _eventContext.TiposEvento.ToList();
         }
     }
 }

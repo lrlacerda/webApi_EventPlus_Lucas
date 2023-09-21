@@ -2,11 +2,11 @@
 
 namespace webApi.Event_.Lucas.Interfaces
 {
-    public interface ITiposEventosRepository
+    public interface IEventoRepository
     {
-        void Cadastrar(TiposEvento tipoEvento);
+        void Cadastrar(Evento evento);
         void Deletar(Guid id);
         List<TiposEvento> Listar();
-        void Atualizar(Guid id, TiposEvento tipoEvento);
+        void Atualizar(Guid id, Evento evento);
     }
 }
