@@ -11,7 +11,6 @@ namespace webApi.Event_.Lucas.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    [Authorize(Roles = "Administrador")]
     public class TiposUsuarioController : ControllerBase
     {
         private ITiposUsuarioRepository _tiposUsuarioRepository;

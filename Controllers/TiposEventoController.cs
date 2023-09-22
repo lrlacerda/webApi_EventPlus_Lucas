@@ -11,7 +11,6 @@ namespace webApi.Event_.Lucas.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    [Authorize(Roles = "Administrador")]
     public class TiposEventoController : ControllerBase
     {
         private ITiposEventosRepository _tiposEventoRepository;
@@ -22,7 +21,6 @@ namespace webApi.Event_.Lucas.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrador")]
         public IActionResult Post(TiposEvento tiposEvento) 
         {
             try
