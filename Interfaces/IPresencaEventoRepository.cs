@@ -8,5 +8,6 @@ namespace webApi.Event_.Lucas.Interfaces
         void Deletar(Guid id);
         List<PresencaEvento> Listar();
         void Atualizar(Guid id, PresencaEvento presencaEvento);
+        public List<PresencaEvento> ListarEventosPorUsuario(Guid idUsuario);
     }
 }

@@ -38,8 +38,15 @@ namespace webApi.Event_.Lucas.Repositories
 
         public List<PresencaEvento> Listar()
         {
-            throw new NotImplementedException();
-            //return _eventContext.TiposEvento.Where(filtro).ToList();
+            return _eventContext.PresencaEvento.ToList();
         }
+
+        public List<PresencaEvento> ListarEventosPorUsuario(Guid idUsuario)
+        {
+            return _eventContext.PresencaEvento
+                .Where(presenca => presenca.IdUsuario == idUsuario)
+                .ToList();
+        }
+
     }
 }

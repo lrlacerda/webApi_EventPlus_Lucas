@@ -7,7 +7,7 @@ namespace webApi.Event_.Lucas.Interfaces
         void Cadastrar(Instituicao instituicao);
         void Deletar(Guid id);
         List<Instituicao> Listar();
-        Instituicao BuscarPorId();
+        Instituicao BuscarPorId(Guid id);
         void Atualizar(Guid id, Instituicao instituicao);
     }
 }

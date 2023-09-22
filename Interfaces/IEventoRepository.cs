@@ -6,7 +6,8 @@ namespace webApi.Event_.Lucas.Interfaces
     {
         void Cadastrar(Evento evento);
         void Deletar(Guid id);
-        List<TiposEvento> Listar();
+        List<Evento> Listar();
         void Atualizar(Guid id, Evento evento);
+        Evento BuscarPorId(Guid id);
     }
 }

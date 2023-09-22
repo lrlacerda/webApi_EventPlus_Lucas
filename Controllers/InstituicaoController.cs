@@ -11,22 +11,21 @@ namespace webApi.Event_.Lucas.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class UsuarioController : ControllerBase
+    public class InstituicaoController : ControllerBase
     {
-        private IUsuarioRepository _usuarioRepository;
+        private IInstituicaoRepository _instituicaoRepository;
 
-        public UsuarioController()
+        public InstituicaoController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _instituicaoRepository = new InstituicaoRepository();
         }
 
         [HttpPost]
-        public IActionResult Post(Usuario usuario) 
+        public IActionResult Post(Instituicao instituicao)
         {
             try
             {
-                _usuarioRepository.Cadastrar(usuario);
-
+                _instituicaoRepository.Cadastrar(instituicao);
                 return StatusCode(201);
             }
             catch (Exception e)
@@ -36,12 +35,40 @@ namespace webApi.Event_.Lucas.Controllers
             }
         }
 
+        [HttpPut("{Id}")]
+        public IActionResult Put(Guid id, Instituicao instituicao)
+        {
+            try
+            {
+                _instituicaoRepository.Atualizar(id, instituicao);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpDelete]
+        public IActionResult Delete(Guid id)
+        {
+            try
+            {
+                _instituicaoRepository.Deletar(id);
+                return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
             try
             {
-                return Ok(_usuarioRepository.BuscarPorId(id));
+                return Ok(_instituicaoRepository.BuscarPorId(id));
             }
             catch (Exception e)
             {
@@ -55,25 +82,11 @@ namespace webApi.Event_.Lucas.Controllers
         {
             try
             {
-                return Ok(_usuarioRepository.Listar());
+                return Ok(_instituicaoRepository.Listar());
             }
             catch (Exception e)
             {
 
-                return BadRequest(e.Message);
-            }
-        }
-
-        [HttpDelete]
-        public IActionResult Delete(Guid id)
-        {
-            try
-            {
-                _usuarioRepository.Deletar(id);
-                return NoContent();
-            }
-            catch (Exception e)
-            {
                 return BadRequest(e.Message);
             }
         }

@@ -1,4 +1,5 @@
-﻿using webApi.Event_.Lucas.Domains;
+﻿using webApi.Event_.Lucas.Contexts;
+using webApi.Event_.Lucas.Domains;
 
 namespace webApi.Event_.Lucas.Interfaces
 {
@@ -6,6 +7,7 @@ namespace webApi.Event_.Lucas.Interfaces
     {
         void Cadastrar(ComentariosEvento comentarioEvento);
         void Deletar(Guid id);
-        List<TiposEvento> Listar();
+        List<ComentariosEvento> Listar();
+        public List<ComentariosEvento> ListarComentariosPorUsuario(Guid idUsuario);
     }
 }

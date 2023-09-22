@@ -25,7 +25,6 @@ namespace webApi.Event_.Lucas.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrador, Aluno")]
         public IActionResult Post(LoginViewModel usuario)
         {
             //LoginViewModel usuarioBuscado = usuario;

@@ -30,24 +30,23 @@ namespace webApi.Event_.Lucas.Repositories
             return _eventContext.Instituicao.FirstOrDefault(e => e.IdInstituicao == id)!;
         }
 
-        public Instituicao BuscarPorId()
-        {
-            throw new NotImplementedException();
-        }
-
         public void Cadastrar(Instituicao instituicao)
         {
-            throw new NotImplementedException();
+            _eventContext.Instituicao.Add(instituicao);
+
+            _eventContext.SaveChanges();
         }
 
         public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            Instituicao instituicaoBuscado = _eventContext.Instituicao.Find(id)!;
+            _eventContext.Instituicao.Remove(instituicaoBuscado);
+            _eventContext.SaveChanges();
         }
 
         public List<Instituicao> Listar()
         {
-            throw new NotImplementedException();
+            return _eventContext.Instituicao.ToList();
         }
     }
 }

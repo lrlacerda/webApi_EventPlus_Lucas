@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 using webApi.Event_.Lucas.Domains;
 using webApi.Event_.Lucas.Interfaces;
 using webApi.Event_.Lucas.Repositories;
@@ -11,51 +9,22 @@ namespace webApi.Event_.Lucas.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class UsuarioController : ControllerBase
+    public class ComentariosEventoController : ControllerBase
     {
-        private IUsuarioRepository _usuarioRepository;
+        private IComentariosEventoRepository _comentarioEventoRepository;
 
-        public UsuarioController()
+        public ComentariosEventoController()
         {
-            _usuarioRepository = new UsuarioRepository();
+            _comentarioEventoRepository = new ComentariosEventoRepository();
         }
 
         [HttpPost]
-        public IActionResult Post(Usuario usuario) 
+        public IActionResult Post(ComentariosEvento comentarioEvento)
         {
             try
             {
-                _usuarioRepository.Cadastrar(usuario);
-
+                _comentarioEventoRepository.Cadastrar(comentarioEvento);
                 return StatusCode(201);
-            }
-            catch (Exception e)
-            {
-
-                return BadRequest(e.Message);
-            }
-        }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
-        {
-            try
-            {
-                return Ok(_usuarioRepository.BuscarPorId(id));
-            }
-            catch (Exception e)
-            {
-
-                return BadRequest(e.Message);
-            }
-        }
-
-        [HttpGet]
-        public IActionResult Get()
-        {
-            try
-            {
-                return Ok(_usuarioRepository.Listar());
             }
             catch (Exception e)
             {
@@ -69,8 +38,38 @@ namespace webApi.Event_.Lucas.Controllers
         {
             try
             {
-                _usuarioRepository.Deletar(id);
+                _comentarioEventoRepository.Deletar(id);
                 return NoContent();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult Get()
+        {
+            try
+            {
+                return Ok(_comentarioEventoRepository.Listar());
+            }
+            catch (Exception e)
+            {
+
+                return BadRequest(e.Message);
+            }
+        }
+
+        [HttpGet("usuario/{idUsuario}")]
+        public IActionResult GetComentariosPorUsuario(Guid idUsuario)
+        {
+            try
+            {
+                // Chama o método ListarComentariosPorUsuario do repositório com o ID do usuário
+                var comentarios = _comentarioEventoRepository.ListarComentariosPorUsuario(idUsuario);
+
+                return Ok(comentarios);
             }
             catch (Exception e)
             {
