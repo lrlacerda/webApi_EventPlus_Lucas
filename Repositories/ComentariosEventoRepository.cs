@@ -36,6 +36,5 @@ namespace webApi.Event_.Lucas.Repositories
                 .Where(comentario => comentario.IdUsuario == idUsuario)
                 .ToList();
         }
-
     }
 }
